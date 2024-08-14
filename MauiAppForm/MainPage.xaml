@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="MauiAppForm.MainPage"
+             BackgroundColor="#00837E" 
+>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="StyledButton" TargetType="Button">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="BackgroundColor" Value="#007bff" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="Margin" Value="0,20,0,0" />
+                <Style.Triggers>
+                    <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                        <Setter Property="BackgroundColor" Value="#0056b3" />
+                    </Trigger>
+                    <Trigger TargetType="Button" Property="IsEnabled" Value="False">
+                        <Setter Property="BackgroundColor" Value="#cccccc" />
+                        <Setter Property="TextColor" Value="#666666" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Padding="50" Spacing="15">
+
+            <Label Text="Full Name" FontSize="15" TextColor="#333" />
+            <Entry x:Name="FullNameEntry" Placeholder="Enter your full name" FontSize="18" BackgroundColor="White" />
+
+            <Label Text="Date of Birth" FontSize="15" TextColor="#333" />
+            <DatePicker x:Name="DateOfBirthPicker" FontSize="18" BackgroundColor="White"  MaximumDate="{x:Static sys:DateTime.Now}"   />
+
+            <Label Text="Gender" FontSize="15" TextColor="#333" />
+            <Picker x:Name="GenderPicker" FontSize="18" BackgroundColor="White">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Male</x:String>
+                        <x:String>Female</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Mobile Number" FontSize="15" TextColor="#333" />
+            <Entry x:Name="MobileNumberEntry" Placeholder="Enter your mobile number" FontSize="Small" BackgroundColor="White" Keyboard="Telephone"/>
+
+            <Label Text="Email" FontSize="15" TextColor="#333" />
+            <Entry x:Name="EmailEntry" Placeholder="Enter your email" FontSize="Small" BackgroundColor="White" Keyboard="Email" />
+
+
+            <Grid HorizontalOptions="Center" VerticalOptions="Center" ColumnSpacing="10" Margin="30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Text="-" 
+                        FontSize="40"
+                        Grid.Column="0"
+                        BackgroundColor="#FFD604" 
+                        TextColor="White" 
+                        CornerRadius="25"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Clicked="OnMinusClicked"
+                        Padding="0,-10,0,0"
+                />
+                <Frame Grid.Column="1"
+                       BackgroundColor="WhiteSmoke"
+                       CornerRadius="10"
+                       HasShadow="False"
+                       Padding="0"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       WidthRequest="150"
+                       HeightRequest="50"
+                       BorderColor="Transparent">
+                    <Label x:Name="countLabel"
+                           Text="1-10"
+                           TextColor="Gray"
+                           FontSize="Medium"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                    />
+                </Frame>
+
+                <Button Text="+"
+                        FontSize="40"
+                        Grid.Column="2"
+                        BackgroundColor="#FFD604" 
+                        TextColor="White" 
+                        CornerRadius="25"
+                        WidthRequest="50"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Clicked="OnPlusClicked"
+                />
+
+            </Grid>
+
+            <Button Text="Submit" Clicked="OnSubmitButtonClicked" Style="{StaticResource StyledButton}" />
+
+        </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>
